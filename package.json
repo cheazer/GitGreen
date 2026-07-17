@@ -1,0 +1,19 @@
+{
+  "name": "gogreen",
+  "version": "0.1.0",
+  "description": "🌱 Paint your GitHub contribution graph — random fills, patterns, and text",
+  "type": "module",
+  "bin": {
+    "gogreen": "./bin/gogreen.js"
+  },
+  "scripts": {
+    "start": "node bin/gogreen.js",
+    "dry": "node bin/gogreen.js --dry-run"
+  },
+  "keywords": ["github", "contribution-graph", "git", "cli"],
+  "license": "MIT",
+  "dependencies": {
+    "jsonfile": "^6.1.0",
+    "simple-git": "^3.25.0"
+  }
+}
