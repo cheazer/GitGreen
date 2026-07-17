@@ -8,8 +8,11 @@
   },
   "scripts": {
     "start": "node bin/gogreen.js",
-    "dry": "node bin/gogreen.js --dry-run"
+    "dry": "node bin/gogreen.js --dry-run",
+    "test": "vitest run"
   },
+
+  
   "keywords": [
     "github",
     "contribution-graph",
@@ -21,5 +24,8 @@
     "commander": "^15.0.0",
     "jsonfile": "^6.1.0",
     "simple-git": "^3.25.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.10"
   }
 }
