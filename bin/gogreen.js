@@ -2,6 +2,8 @@ import { Command } from "commander";
 import { buildRandomPlan } from "../src/plan.js";
 import { execute } from "../src/executor.js";
 import { renderPlan } from "../src/render.js";
+import { readFileSync } from "node:fs";
+import { buildPatternPlan } from "../src/pattern.js";
 
 const program = new Command();
 
@@ -13,8 +15,10 @@ program
   .option("-m, --max-per-day <n>", "max commits on a single day (controls shade)", "4")
   .option("-w, --weeks <n>", "how many weeks back to spread across", "52")
   .option("-r, --repo <path>", "path to the git repo to commit into", ".")
-  .option("-d, --dry-run", "show the plan without committing anything", false);
-  .option("-p, --preview", "render the graph the plan would produce", false);
+  .option("-d, --dry-run", "show the plan without committing anything", false)
+  .option("-p, --preview", "render the graph the plan would produce", false)
+  .option("-s, --stencil <file>", "path to an ASCII stencil file to draw")
+  .option("-o, --offset-weeks <n>", "slide the stencil right by n weeks", "0");
 
 program.parse();
 const opts = program.opts();
@@ -28,6 +32,8 @@ if ([total, maxPerDay, weeks].some(Number.isNaN) || total < 1 || maxPerDay < 1 |
   process.exit(1);
 }
 
-const plan = buildRandomPlan({ total, maxPerDay, weeks });
+const plan = opts.stencil
+  ? buildPatternPlan(readFileSync(opts.stencil, "utf8"), { offsetWeeks: parseInt(opts.offsetWeeks, 10) })
+  : buildRandomPlan({ total, maxPerDay, weeks });
 if (opts.preview || opts.dryRun) console.log(renderPlan(plan, { weeks }))
 await execute(plan, { dryRun: opts.dryRun, repoPath: opts.repo });
