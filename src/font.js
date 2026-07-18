@@ -15,7 +15,7 @@ const FONT = {
   K: ["X.X", "X.X", "XX.", "X.X", "X.X"],
   L: ["X..", "X..", "X..", "X..", "XXX"],
   M: ["X.X", "XXX", "X.X", "X.X", "X.X"],
-  N: ["X.X", "XXX", "XXX", "X.X", "X.X"],
+  N: ["X..X", "XX.X", "X.XX", "X..X", "X..X"],
   O: [".X.", "X.X", "X.X", "X.X", ".X."],
   P: ["XX.", "X.X", "XX.", "X..", "X.."],
   Q: [".X.", "X.X", "X.X", "XX.", ".XX"],
